@@ -1,0 +1,100 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pine-tree img {
+  width: 10%;
+  position: fixed;
+  z-index: 2;
+}
+
+.pine-tree-left {
+  bottom: 0;
+  cursor: pointer;
+  z-index: -1;
+  animation: lighting 1s infinite;
+  transform: matrix(-.99, -.14, -.14, .99, 0, 0);
+  right: 93.5vw;
+}
+
+.pine-tree-right {
+  bottom: 0;
+  left: 93.5vw;
+  cursor: pointer;
+  z-index: -1;
+  animation: lighting 1s infinite;
+  transform: rotate(-8.21deg);
+}
+
+.pine-tree .santa-left {
+  bottom: 0;
+  left: 1vw;
+  cursor: pointer;
+  z-index: 2;
+  width: 6vw;
+}
+
+.pine-tree .santa-right {
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+  z-index: 2;
+  width: 3vw;
+}
+
+@keyframes lighting {
+  0% {
+    content: url("../public/asset/img/light-pine-tree.png");
+  }
+
+  100% {
+    content: url("../public/asset/img/pine-tree.png");
+  }
+
+}
+
+@media screen and (max-width: 1279px) {
+  .pine-tree,
+  .santa-left,
+  .santa-left {
+    display: none;
+    ;
+  }
+  .App {width: 100vw !important;}
+}
