@@ -1,18 +1,24 @@
 from flask import Flask, jsonify, request
 from process import chatbot, training
 from process import craw_app
-
+from flask_cors import cross_origin, CORS
+# sleep
+import time
 app = Flask(__name__)
 
 # post chat 
 @app.route('/chat', methods=['POST'])
+@cross_origin()
 def chat():
+    # sleep 1s
+    # time.sleep(1)
     # get message from request json
     message = request.json['message']
     # get response from chatbot
     response = chatbot.chatResponse(message)
+    response = jsonify({'chat': response})
     # return response
-    return jsonify({'chat': response})
+    return response
 
 # create a route craw data and save to json file
 @app.route('/craw', methods=['GET'])

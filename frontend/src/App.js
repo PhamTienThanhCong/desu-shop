@@ -17,6 +17,7 @@ import Success from './pages/Success';
 import Footer from './components/Footer';
 import Announcement from './components/Announcement';
 import Navbar from './components/Navbar';
+import ChatWindown from './components/ChatWindown';
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path='/success' element={<Success />} />
         </Routes>
+        <ChatWindown />
         <Footer />
       </ThemeProvider>
       <div className="pine-tree">
