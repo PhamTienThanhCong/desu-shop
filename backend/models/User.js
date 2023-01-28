@@ -25,6 +25,14 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    phone: {
+        type: String,
+        default: ''
+    },
+    address: {
+        type: String,
+        default: 'Việt Nam'
+    },
     cart: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Cart'

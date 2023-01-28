@@ -4,10 +4,46 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import PublishIcon from '@mui/icons-material/Publish';
+import AtatarDefault from './avatar.jpg';
 import { Link } from "react-router-dom";
 import "./user.css";
+import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
+
 
 export default function User() {
+
+  const [user, setUser] = useState({
+    username: "loading...",
+    email: "loading...",
+    phone: "loading...",
+    createdAt: "loading...",
+    admin: false,
+  });
+  const [loading, setLoading] = useState(false);
+  // get id from url
+  const id = window.location.pathname.split("/")[2];
+
+  const getUser = async () => {
+    setLoading(true);
+    // axios config header
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+    const res = await axios.get(`http://localhost:8000/v1/user/${id}`, config);
+    setLoading(false);
+    setUser(res.data);
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
+
   return (
     <div className="user">
       <div className="userTitleContainer">
@@ -20,37 +56,56 @@ export default function User() {
         <div className="userShow">
           <div className="userShowTop">
             <img
-              src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+              src={AtatarDefault}
               alt=""
               className="userShowImg"
             />
             <div className="userShowTopTitle">
-              <span className="userShowUsername">Anna Becker</span>
-              <span className="userShowUserTitle">Software Engineer</span>
+              <span className="userShowUsername">
+                {user.username}
+              </span>
+              <span className="userShowUserTitle">
+                {
+                  user.admin ? "Admin" : "User"
+                }
+              </span>
             </div>
           </div>
           <div className="userShowBottom">
             <span className="userShowTitle">Account Details</span>
             <div className="userShowInfo">
               <PermIdentityIcon className="userShowIcon" />
-              <span className="userShowInfoTitle">annabeck99</span>
+              <span className="userShowInfoTitle">
+                {user.username}
+              </span>
             </div>
             <div className="userShowInfo">
               <CalendarTodayIcon className="userShowIcon" />
-              <span className="userShowInfoTitle">10.12.1999</span>
+              <span className="userShowInfoTitle">
+                {
+                  // format date
+                  new Date(user.createdAt).toDateString()
+                }
+              </span>
             </div>
             <span className="userShowTitle">Contact Details</span>
             <div className="userShowInfo">
               <PhoneAndroidIcon className="userShowIcon" />
-              <span className="userShowInfoTitle">+1 123 456 67</span>
+              <span className="userShowInfoTitle">
+                {user.phone}
+              </span>
             </div>
             <div className="userShowInfo">
               <MailOutlineIcon className="userShowIcon" />
-              <span className="userShowInfoTitle">annabeck99@gmail.com</span>
+              <span className="userShowInfoTitle">
+                {user.email}
+              </span>
             </div>
             <div className="userShowInfo">
               <LocationSearchingIcon className="userShowIcon" />
-              <span className="userShowInfoTitle">New York | USA</span>
+              <span className="userShowInfoTitle">
+                {user.address}
+              </span>
             </div>
           </div>
         </div>
@@ -62,55 +117,40 @@ export default function User() {
                 <label>Username</label>
                 <input
                   type="text"
-                  placeholder="annabeck99"
+                  placeholder="username"
                   className="userUpdateInput"
-                />
-              </div>
-              <div className="userUpdateItem">
-                <label>Full Name</label>
-                <input
-                  type="text"
-                  placeholder="Anna Becker"
-                  className="userUpdateInput"
+                  value={user.username}
                 />
               </div>
               <div className="userUpdateItem">
                 <label>Email</label>
                 <input
                   type="text"
-                  placeholder="annabeck99@gmail.com"
+                  placeholder="Email"
                   className="userUpdateInput"
+                  value={user.email}
                 />
               </div>
               <div className="userUpdateItem">
                 <label>Phone</label>
                 <input
                   type="text"
-                  placeholder="+1 123 456 67"
+                  placeholder="phone number"
                   className="userUpdateInput"
+                  value={user.phone}
                 />
               </div>
               <div className="userUpdateItem">
                 <label>Address</label>
                 <input
                   type="text"
-                  placeholder="New York | USA"
+                  placeholder="address"
                   className="userUpdateInput"
+                  value={user.address}
                 />
               </div>
             </div>
             <div className="userUpdateRight">
-              <div className="userUpdateUpload">
-                <img
-                  className="userUpdateImg"
-                  src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                  alt=""
-                />
-                <label htmlFor="file">
-                  <PublishIcon className="userUpdateIcon" />
-                </label>
-                <input type="file" id="file" style={{ display: "none" }} />
-              </div>
               <button className="userUpdateButton">Update</button>
             </div>
           </form>
