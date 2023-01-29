@@ -152,3 +152,25 @@
     color: white;
     font-weight: 600;
 }
+
+.button-back{
+  width: 200px;
+  border: none;
+  color: rgb(255, 255, 255);
+  background-color: #555;
+  padding: 7px 10px;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+.userDeleteUser{
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    background-color: #b12929;
+    color: white;
+    cursor: pointer;
+    margin-right: 20px;
+}

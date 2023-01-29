@@ -9,8 +9,8 @@ router.get("/", userController.getAllUsers);
 router.get("/:id", userController.getUser);
 
 //delete user
-router.delete("/:id", middleware.verifyAdmin ,userController.deleteUser);
+router.delete("/:id" ,userController.deleteUser);
 //update user
-router.put("/:id", middleware.verifyAdmin ,userController.updateUser);
+router.put("/:id" ,userController.updateUser);
 
 module.exports = router;

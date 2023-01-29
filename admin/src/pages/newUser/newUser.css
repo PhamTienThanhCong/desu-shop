@@ -55,3 +55,15 @@
     margin-top: 30px;
     cursor: pointer;
 }
+
+.button-back{
+    width: 200px;
+    border: none;
+    color: rgb(255, 255, 255);
+    background-color: #555;
+    padding: 7px 10px;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 30px;
+}

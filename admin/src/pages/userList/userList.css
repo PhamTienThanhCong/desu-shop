@@ -36,6 +36,12 @@
   font-weight: 600;
 }
 
+.userListTitleContainer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 /* userListPaging */
 .userListPaging {
   display: flex;

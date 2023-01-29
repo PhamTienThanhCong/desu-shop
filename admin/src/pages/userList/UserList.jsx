@@ -41,8 +41,10 @@ export default function UserList() {
     <div className="userList">
       <div className="userListTitleContainer">
         <h1 className="userListTitle">User List</h1>
+        <Link to="/newUser">
+          <button className="userAddButton">Create</button>
+        </Link>
       </div>
-      
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
