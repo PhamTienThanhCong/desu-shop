@@ -1,14 +1,19 @@
-import "./NewChat.css";
+import "./ViewChat.css";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import CloseIcon from '@mui/icons-material/Close';
 import { useState } from "react";
+import { useEffect } from "react";
 
-export default function NewChat() {
-  document.title = "New tag chat";
+export default function ViewChat() {
   const [Responses, setResponses] = useState([]);
   const [Patterns, setPatterns] = useState([]);
   const [Tag, setTag] = useState("");
   const [Description, setDescription] = useState("");
+  const [data, setData] = useState({});
+  document.title = `view tag ${data.tag}`;
+
+  const id = window.location.pathname.split("/")[2];
 
   const handleSubmit = (e) => {
     e.preventDefault();  
@@ -18,29 +23,59 @@ export default function NewChat() {
       patterns: Patterns,
       responses: Responses
     }
+    // config header to update method put
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify(data);
+
+    var requestOptions = {
+      method: 'PUT',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    }
+
+    fetch(`http://localhost:8000/v1/chat/${id}`, requestOptions)
+      .then(response => response.text())
+      .then(result => {
+        getData();
+        alert("Update tag chat success")
+      })
+      .catch(error => console.log('error', error));
+ 
+  };
+
+  // get data
+  const getData = async () => {
     // config header
     var myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-  myHeaders.append("Cookie", "refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNWZhODVlNDBiYTI1OTk0NWMyNmI3NyIsImFkbWluIjp0cnVlLCJpYXQiOjE2NzQ4OTk5MzAsImV4cCI6MTcwNjQzNTkzMH0.7m9wDOtRxcEbirIfL0r2rE-l4GkjDbeLX8AqxqJRCzM");
+    myHeaders.append("Content-Type", "application/json");
+    
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
 
-  var raw = JSON.stringify(data);
-
-  var requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: raw,
-    redirect: 'follow'
+    fetch(`http://localhost:8000/v1/chat/${id}`, requestOptions)
+      .then(response => response.json())
+      .then(result => setDataRequest(result))
+      .catch(error => console.log('error', error));
   };
 
-  fetch("http://localhost:8000/v1/chat/create", requestOptions)
-    .then(response => response.text())
-    .then(result => alert("Create tag chat success"))
-    .catch(error => console.log('error', error));
-  setTag("");
-  setDescription("");
-  setPatterns([]);
-  setResponses([]);
-  };
+  function setDataRequest(data){
+    setData(data);
+    setTag(data.tag);
+    setDescription(data.description);
+    setPatterns(data.patterns);
+    setResponses(data.responses);
+  }
+
+  // call getData
+  useEffect(() => {
+    getData();
+  }, []);
 
   const handleAddResponse = (e) => {
     const value = document.getElementById("handleAddResponse").value;
@@ -72,7 +107,7 @@ export default function NewChat() {
 
   return (
     <div className="newUser">
-      <h1 className="newUserTitle">New Tag chat</h1>
+      <h1 className="newUserTitle">Edit tag {data.tag}</h1>
       <form className="newUserForm" onSubmit={ handleSubmit }>
         <div className="newUserItem">
           <label>TagName</label>
@@ -107,7 +142,7 @@ export default function NewChat() {
         </div>
 
         <div className="newUserItem">
-          <button className="newUserButton">Create new tag</button>
+          <button className="newUserButton">Edit new user</button>
         </div>
       </form>
       <Link to="/chats">

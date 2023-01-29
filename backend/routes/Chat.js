@@ -8,12 +8,12 @@ router.post("/create", chatController.createChat);
 router.get("/", chatController.getAllChats);
 
 // // get users
-// router.get("/:id", chatController.getUser);
+router.get("/:id", chatController.getChart);
 
 // //delete user
 // router.delete("/:id" ,chatController.deleteUser);
 
 // //update user
-// router.put("/:id" ,chatController.updateUser);
+router.put("/:id" ,chatController.updateChat);
 
 module.exports = router;

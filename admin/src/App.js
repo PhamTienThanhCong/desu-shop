@@ -15,12 +15,17 @@ import ViewCategory from "./pages/viewCategory/Category";
 import Login from "./pages/login/Login";
 import ChatList from "./pages/chat/chatList/ChatList";
 import NewChat from "./pages/chat/newChat/NewChat";
+import ViewChat from "./pages/chat/viewChat/ViewChat";
+import Training from "./pages/chat/training/Training";
 // import Login from "./pages/login/Login";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+
 
 function App() {
 
-  // const admin = useSelector((state) => state.user.currentUser.isAdmin);
+  const admin = useSelector((state) => state.user);
+
+  console.log(admin);
 
   return (
     <Router>
@@ -28,6 +33,7 @@ function App() {
       <div className="container">
         <Sidebar />
         <Routes>
+          <Route path="/login" element={<Login />} />
           <Route exact path="/" element={<Home />} />
           <Route path="/users" element={<UserList />} />
           <Route path="/user/:userId" element={<User />} />
@@ -40,9 +46,8 @@ function App() {
           <Route path="/category/:categoryId" element={<ViewCategory />} />
           <Route path="/chats" element={<ChatList />} />
           <Route path="/add-tag" element={<NewChat />} />
-          
-          {/* <Route path="/login" element={<Login />} /> */}
-
+          <Route path="/chat/:id" element={<ViewChat />} />
+          <Route path="/training" element={<Training />} />
         </Routes>
       </div>
     </Router>

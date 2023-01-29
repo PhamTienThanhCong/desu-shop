@@ -5,6 +5,8 @@ from flask_cors import cross_origin, CORS
 # sleep
 import time
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 # post chat 
 @app.route('/chat', methods=['POST'])
@@ -16,6 +18,8 @@ def chat():
     message = request.json['message']
     # get response from chatbot
     response = chatbot.chatResponse(message)
+    if response is None:
+        response = "I don't understand"
     response = jsonify({'chat': response})
     # return response
     return response
@@ -24,7 +28,7 @@ def chat():
 @app.route('/craw', methods=['GET'])
 def craw():
     # return response
-    name_craw = "http://127.0.0.1:8080/"
+    name_craw = "http://localhost:8000/v1/chat"
     if craw_app.crawl_website(name_craw):
         return jsonify({'craw': 'success'})
     else:
