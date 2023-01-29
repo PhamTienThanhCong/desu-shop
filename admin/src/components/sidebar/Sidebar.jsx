@@ -49,14 +49,14 @@ export default function Sidebar() {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Categories manage</h3>
           <ul className="sidebarList">
-            <Link to="/" className="link">
+            <Link to="/category" className="link">
               <li className="sidebarListItem">
                 <CategoryIcon className="sidebarIcon" />
                 Categories
               </li>
             </Link>
             {/* Link to create user */}
-            <Link to="/" className="link">
+            <Link to="/add-category" className="link">
               <li className="sidebarListItem">
                 <PlaylistAddIcon className="sidebarIcon" />
                 Create a new Categorie

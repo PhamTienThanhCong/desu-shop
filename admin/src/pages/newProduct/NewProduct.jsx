@@ -4,6 +4,8 @@ import { addProduct, getCategories } from "../../redux/apiCalls";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function NewProduct() {
+  // change name page
+  document.title = "New Product";
   const [inputs, setInputs] = useState({});
   const categories = useSelector((state) => state.category.categories);
 
@@ -14,16 +16,17 @@ export default function NewProduct() {
       return { ...prev, [e.target.name]: e.target.value };
     });
   };
-  // const handleCat = (e) => {
-  //   setCat(e.target.value.split(","));
-  // };
-
-  const handleClick = (e) => {
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const product = { ...inputs };
-    addProduct(product, dispatch);
+    const product = await addProduct(inputs, dispatch);
+    if (product.data) {
+      window.location.replace("/product/" + product.data.id);
+    }else{
+      console.log('error')
+    }
   };
+
 
   useEffect(() => {
     getCategories(dispatch);
@@ -31,24 +34,27 @@ export default function NewProduct() {
 
   return (
     <div className="newProduct">
-      <h1 className="addProductTitle">New Product</h1>
-      <form className="addProductForm">
+      <h1 className="addProductTitle">Create a New Product</h1>
+      <form className="addProductForm" onSubmit={ handleSubmit }>
+        <div className="addProductItem">
+          <label>Name</label>
+          <input
+            name="name"
+            type="text"
+            placeholder="name product..."
+            onChange={handleChange}
+            required
+          />
+        </div>
         <div className="addProductItem">
           <label>Image</label>
           <input
             type="text"
             id="file"
             name="image"
+            placeholder="image link..."
             onChange={handleChange}
-          />
-        </div>
-        <div className="addProductItem">
-          <label>Name</label>
-          <input
-            name="name"
-            type="text"
-            placeholder="Apple Airpods"
-            onChange={handleChange}
+            required
           />
         </div>
         <div className="addProductItem">
@@ -58,6 +64,7 @@ export default function NewProduct() {
             type="text"
             placeholder="description..."
             onChange={handleChange}
+            required
           />
         </div>
         <div className="addProductItem">
@@ -65,13 +72,14 @@ export default function NewProduct() {
           <input
             name="price"
             type="number"
-            placeholder="100"
+            placeholder="price product..."
             onChange={handleChange}
+            required
           />
         </div>
         <div className="addProductItem">
           <label>Categories</label>
-          <select style={{ 'padding': '10px' }} name="category" onChange={handleChange} >
+          <select style={{ 'padding': '10px' }} name="category" onChange={handleChange} required >
             <option value="" hidden> PLEASE CHOOSE CATEGORY</option>
             {categories.map(cat =>
               <option key={cat.id} value={cat.id} defaultChecked>{cat.name}</option>
@@ -81,10 +89,10 @@ export default function NewProduct() {
 
         <div className="addProductItem">
           <label>Quantity</label>
-          <input name="quantity" type="text" placeholder="jeans,skirts" onChange={handleChange} />
+          <input name="quantity" type="number" placeholder="Quantity product" onChange={handleChange} required />
         </div>
         <div>
-          <button onClick={handleClick} className="productAddButton">
+          <button className="productAddButton">
             Create
           </button>
         </div>

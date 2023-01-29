@@ -9,6 +9,9 @@ import NewUser from "./pages/newUser/NewUser";
 import ProductList from "./pages/productList/ProductList";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
+import Category from "./pages/category/Category";
+import NewCategory from "./pages/newCategory/NewCategory";
+import ViewCategory from "./pages/viewCategory/Category";
 // import Login from "./pages/login/Login";
 // import { useSelector } from "react-redux";
 
@@ -29,6 +32,9 @@ function App() {
           <Route path="/products" element={<ProductList />} />
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/newproduct" element={<NewProduct />} />
+          <Route path="/category" element={<Category />} />
+          <Route path="/add-category" element={<NewCategory />} />
+          <Route path="/category/:categoryId" element={<ViewCategory />} />
         </Routes>
       </div>
     </Router>

@@ -1,5 +1,22 @@
 .productList{
     flex: 4;
+    padding: 20px;
+}
+
+.productListTitle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.productTitle{
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.productListTitleLeft{
+    display: flex;
+    align-items: center;
 }
 
 .productListItem{
@@ -31,10 +48,9 @@
 }
 
 .productAddButton {
-    width: 100px;
     height: 34px;
     border: none;
-    padding: 5px;
+    padding: 0px 15px;
     background-color: teal;
     color: white;
     border-radius: 5px;

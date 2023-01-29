@@ -56,17 +56,22 @@ export const updateProduct = async (id, product, dispatch) => {
   try {
     const res = await userRequest.put(`/product/${id}`, product);
     dispatch(updateProductSuccess(res.data));
+    return true;
   } catch (err) {
     dispatch(updateProductFailure());
+    return false;
   }
 };
 export const addProduct = async (product, dispatch) => {
   dispatch(addProductStart());
   try {
+    console.log(product);
     const res = await userRequest.post(`/product`, product);
     dispatch(addProductSuccess(res.data));
+    return res;
   } catch (err) {
     dispatch(addProductFailure());
+    return false;
   }
 };
 export const getCategories = async (dispatch) => {

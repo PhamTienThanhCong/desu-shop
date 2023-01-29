@@ -1,4 +1,4 @@
-import "./userList.css";
+import "./Category.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios';
@@ -23,7 +23,7 @@ export default function UserList() {
 
   const getData = async () => {
     setLoading(true);
-    const res = await axios.get('http://localhost:8000/v1/user');
+    const res = await axios.get('http://localhost:8000/v1/category');
     setData(res.data);
     setLoading(false);
     setPage(1);
@@ -41,8 +41,8 @@ export default function UserList() {
   return (
     <div className="userList">
       <div className="userListTitleContainer">
-        <h1 className="userListTitle">User List</h1>
-        <Link to="/newUser">
+        <h1 className="userListTitle">Category List</h1>
+        <Link to="/add-category">
           <button className="userAddButton">Create</button>
         </Link>
       </div>
@@ -50,10 +50,10 @@ export default function UserList() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>User name</TableCell>
-              <TableCell align="center">Email</TableCell>
-              <TableCell align="center">Created at</TableCell>
-              <TableCell align="center">View</TableCell>
+              <TableCell>name</TableCell>
+              <TableCell align="center">description</TableCell>
+              <TableCell align="center">Product Count</TableCell>
+              <TableCell align="center">Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -76,15 +76,20 @@ export default function UserList() {
                   key={item.id}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                  <TableCell component="th" scope="row">
-                    {item.username}
+                  <TableCell align="left" >
+                    <div className="tdUserList">
+                      <img 
+                        className="userListImg"
+                        src={item.image}
+                        alt="" 
+                      />
+                      {item.name}
+                    </div>
                   </TableCell>
-                  <TableCell align="left">{item.email}</TableCell>
-                  <TableCell align="center">{
-                    new Date(item.createdAt).toLocaleDateString()
-                  }</TableCell>
+                  <TableCell align="center" style={{ maxWidth: "200px" }}>{item.description}</TableCell>
+                  <TableCell align="center">{item.products.length}</TableCell>
                   <TableCell align="center">
-                    <Link to={`/user/${item.id}`}>
+                    <Link to={`/category/${item.id}`}>
                       <button className="userListEdit">view</button>
                     </Link>
                   </TableCell>

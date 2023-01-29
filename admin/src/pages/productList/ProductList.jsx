@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct, getProducts } from "../../redux/apiCalls";
 
 export default function ProductList() {
+  // change name page
+  document.title = "Product List";
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
 
@@ -14,14 +16,12 @@ export default function ProductList() {
     getProducts(dispatch);
   }, [dispatch]);
 
-  const handleDelete = (id) => {
-    deleteProduct(id, dispatch);
+  const handleDelete = async (id) => {
+    await deleteProduct(id, dispatch);
+    getProducts(dispatch);
   };
 
   const columns = [
-    { field: "id", headerName: "ID", 
-     flex: 1
-    },
     {
       field: "product",
       headerName: "Product",
@@ -44,6 +44,11 @@ export default function ProductList() {
       flex: 1
     },
     {
+      field: "quantity",
+      headerName: "quantity",
+      flex: 1
+    },
+    {
       field: "action",
       headerName: "Action",
       flex: 1,
@@ -51,7 +56,7 @@ export default function ProductList() {
         return (
           <>
             <Link to={"/product/" + params.row.id}>
-              <button className="productListEdit">Edit</button>
+              <button className="productListEdit">View</button>
             </Link>
             <DeleteOutlineIcon
               className="productListDelete"
@@ -66,9 +71,13 @@ export default function ProductList() {
   return (
 
     <div className="productList">
-      <Link to="/newproduct">
-        <button className="productAddButton m-10-50">Create</button>
-      </Link>
+      <div className='productListTitle'>
+        <h1 className="productTitle">Product List</h1>
+        <Link to="/newproduct">
+          <button className="productAddButton">Create</button>
+        </Link>
+      </div>
+
       <DataGrid
         rows={products}
         disableSelectionOnClick

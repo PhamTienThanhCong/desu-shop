@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 export default function NewUser() {
+  document.title = "New User";
   const handleSubmit = (e) => {
     e.preventDefault();
     const username = e.target[0].value;
