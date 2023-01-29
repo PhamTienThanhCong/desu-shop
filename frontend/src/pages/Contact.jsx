@@ -130,22 +130,23 @@ const Contact = () => {
         <ContactInfo>
           <h3>Contact Infomation</h3>
           <Description>
-          Looking for LAMAHA supermarket? Please visit our <Link to='/about'>About us</Link> page to see a map and the addresses of our supermarkets nationwide.
+            Tìm kiếm siêu thị NHAT SHOP? Vui lòng truy cập trang "Giới thiệu về chúng tôi" của chúng tôi tại <Link to='/about'>đây</Link> để xem bản đồ và địa chỉ của các siêu thị của chúng tôi trên toàn quốc.
           </Description>
           <Content>
-            <p>Address: 622 Dixie Path , South Tobinchester 98336</p>
+            <p>Address: Cộng Hòa, Phường 13, Tân Bình, TP.HCM
+            </p>
             <p>
               Phone: <Tel>1 234 56 78</Tel>
             </p>
             <p>
-              Email: <Tel>contact@lama.dev</Tel>
+              Email: <Tel>contact@nhatshop.dev</Tel>
             </p>
           </Content>
         </ContactInfo>
         <ContactForm>
           <h3>Contact Form</h3>
           <Description>
-          Please fill out the form if you have any feedback or requests.<br/>
+          Vui lòng điền vào biểu mẫu nếu bạn có bất kỳ phản hồi hoặc yêu cầu nào.<br/>
           Thank you.
           </Description>
           <Form onSubmit={handleSubmit(onSubmit)}>

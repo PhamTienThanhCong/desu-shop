@@ -86,11 +86,10 @@
     return (
       <Container>
         <Left>
-          <Logo>LAMA.</Logo>
+          <Logo>NHAT SHOP</Logo>
           <Desc>
-            There are many variations of passages of Lorem Ipsum available, but
-            the majority have suffered alteration in some form, by injected
-            humour, or randomised words which don’t look even slightly believable.
+            {/* mô tả cho Nhat shop */}
+            Hệ thống NHAT SHOP đã trở thành một trong những website chuyên bán lẻ các thiết bị di động có tên tuổi tại thị trường Việt Nam, với các chi nhánh tại TP.HCM, Đà Nẵng. 
           </Desc>
           <SocialContainer>
             <SocialIcon color="3B5999">
@@ -123,13 +122,13 @@
         <Right>
           <Title>Contact</Title>
           <ContactItem>
-            <RoomIcon style={{marginRight:"10px"}}/> 622 Dixie Path , South Tobinchester 98336
+            <RoomIcon style={{marginRight:"10px"}}/> Cộng Hòa, Phường 13, Tân Bình, TP.HCM
           </ContactItem>
           <ContactItem>
             <PhoneIcon style={{marginRight:"10px"}}/> +1 234 56 78
           </ContactItem>
           <ContactItem>
-            <MailOutlineIcon style={{marginRight:"10px"}} /> contact@lama.dev
+            <MailOutlineIcon style={{marginRight:"10px"}} /> contact@nhatshop.dev
           </ContactItem>
           <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
         </Right>

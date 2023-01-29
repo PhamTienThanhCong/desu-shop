@@ -12,6 +12,7 @@ const authRoute = require("./routes/Auth");
 const userRoute = require("./routes/User");
 const cartRoute = require("./routes/Cart");
 const orderRoute = require("./routes/Order");
+const chatRoute = require("./routes/Chat");
 
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
@@ -49,6 +50,7 @@ app.use('/v1/auth', authRoute);
 app.use('/v1/user', userRoute);
 app.use('/v1/cart',cartRoute);
 app.use('/v1/order', orderRoute);
+app.use('/v1/chat', chatRoute);
 
 app.post('/pay', cors(),(req, res) => {
     try{const create_payment_json = {

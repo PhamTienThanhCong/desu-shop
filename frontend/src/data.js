@@ -68,7 +68,7 @@ export const categories = [
 export const listShowrom = [
   {
     id: 1,
-    name: 'Cửa hàng Di Động Lamaha',
+    name: 'Cửa hàng Di Động NHAT SHOP',
     address: "1141D Đường 3/2, Phường 6, Quận 11, Thành phố Hồ Chí Minh",
     phone: "1800.6018",
     center: {
@@ -78,7 +78,7 @@ export const listShowrom = [
   },
   {
     id: 2,
-    name: 'Cửa hàng Di Động Lamaha',
+    name: 'Cửa hàng Di Động NHAT SHOP',
     address: "87A Đ. Kênh Tân Hóa, Tân Thới Hoà, Tân Phú, Thành phố Hồ Chí Minh",
     phone: "1800.6018",
     center: {
@@ -88,7 +88,7 @@ export const listShowrom = [
   },
   {
     id: 3,
-    name: 'Cửa hàng Di Động Lamaha ',
+    name: 'Cửa hàng Di Động NHAT SHOP ',
     address: "454 Đ. Cộng Hòa, Phường 13, Tân Bình, Thành phố Hồ Chí Minh",
     phone: "1800.6018",
     center: {

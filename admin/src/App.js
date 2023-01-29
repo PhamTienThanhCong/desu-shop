@@ -12,6 +12,9 @@ import NewProduct from "./pages/newProduct/NewProduct";
 import Category from "./pages/category/Category";
 import NewCategory from "./pages/newCategory/NewCategory";
 import ViewCategory from "./pages/viewCategory/Category";
+import Login from "./pages/login/Login";
+import ChatList from "./pages/chat/chatList/ChatList";
+import NewChat from "./pages/chat/newChat/NewChat";
 // import Login from "./pages/login/Login";
 // import { useSelector } from "react-redux";
 
@@ -35,6 +38,11 @@ function App() {
           <Route path="/category" element={<Category />} />
           <Route path="/add-category" element={<NewCategory />} />
           <Route path="/category/:categoryId" element={<ViewCategory />} />
+          <Route path="/chats" element={<ChatList />} />
+          <Route path="/add-tag" element={<NewChat />} />
+          
+          {/* <Route path="/login" element={<Login />} /> */}
+
         </Routes>
       </div>
     </Router>

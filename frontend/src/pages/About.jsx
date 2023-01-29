@@ -113,9 +113,9 @@ const About = () => {
 
         </StoreImg>
         <StoreDesp>
-          <h1>LAMAHA</h1>
+          <h1>NHAT SHOP</h1>
           <div>
-            Hệ thống LAMAHA đã trở thành một trong những website chuyên bán lẻ các thiết bị
+            Hệ thống NHAT SHOP đã trở thành một trong những website chuyên bán lẻ các thiết bị
             di động có tên tuổi tại thị trường Việt Nam, với các chi nhánh tại TP.HCM, Đà Nẵng. Với khát khao mang tới
             sự hài lòng tuyệt đối cho khách hàng, phát triển thương hiệu bằng giá trị cốt lõi là niềm tin của khách hàng,
             công ty luôn cố gắng nỗ lực để cập nhật, phát triển không ngừng nghỉ.

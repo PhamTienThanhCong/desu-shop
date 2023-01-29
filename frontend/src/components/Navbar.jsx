@@ -105,7 +105,7 @@ const Navbar = () => {
       <Wrapper>
         <Left>
           <Logo>
-            <Link to='/'>LAMAHA</Link>
+            <Link to='/'>NHAT SHOP</Link>
           </Logo>
         </Left>
         <Center>
