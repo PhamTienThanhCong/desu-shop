@@ -1,16 +1,14 @@
 import "./sidebar.css";
 import LineStyleIcon from '@mui/icons-material/LineStyle';
-import TimelineIcon from '@mui/icons-material/Timeline';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import StorefrontIcon from '@mui/icons-material/Storefront';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import BarChartIcon from '@mui/icons-material/BarChart';
+import PostAddIcon from '@mui/icons-material/PostAdd';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
-import ReportIcon from '@mui/icons-material/Report';
+import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
+import CategoryIcon from '@mui/icons-material/Category';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import { Link } from "react-router-dom";
 
 export default function Sidebar() {
@@ -26,18 +24,12 @@ export default function Sidebar() {
               Home
             </li>
             </Link>
-            <li className="sidebarListItem">
-              <TimelineIcon className="sidebarIcon" />
-              Analytics
-            </li>
-            <li className="sidebarListItem">
-              <TrendingUpIcon className="sidebarIcon" />
-              Sales
-            </li>
           </ul>
         </div>
+        {/* Categories manage */}
+        
         <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Quick Menu</h3>
+          <h3 className="sidebarTitle">User manage</h3>
           <ul className="sidebarList">
             <Link to="/users" className="link">
               <li className="sidebarListItem">
@@ -45,24 +37,52 @@ export default function Sidebar() {
                 Users
               </li>
             </Link>
+            {/* Link to create user */}
+            <Link to="/newUser" className="link">
+              <li className="sidebarListItem">
+                <PersonAddAltIcon className="sidebarIcon" />
+                Create user
+              </li>
+            </Link>
+          </ul>
+        </div>
+        <div className="sidebarMenu">
+          <h3 className="sidebarTitle">Categories manage</h3>
+          <ul className="sidebarList">
+            <Link to="/" className="link">
+              <li className="sidebarListItem">
+                <CategoryIcon className="sidebarIcon" />
+                Categories
+              </li>
+            </Link>
+            {/* Link to create user */}
+            <Link to="/" className="link">
+              <li className="sidebarListItem">
+                <PlaylistAddIcon className="sidebarIcon" />
+                Create a new Categorie
+              </li>
+            </Link>
+          </ul>
+        </div>
+        <div className="sidebarMenu">
+          <h3 className="sidebarTitle">Product manage</h3>
+          <ul className="sidebarList">
             <Link to="/products" className="link">
               <li className="sidebarListItem">
                 <StorefrontIcon className="sidebarIcon" />
                 Products
               </li>
             </Link>
-            <li className="sidebarListItem">
-              <AttachMoneyIcon className="sidebarIcon" />
-              Transactions
-            </li>
-            <li className="sidebarListItem">
-              <BarChartIcon className="sidebarIcon" />
-              Reports
-            </li>
+            <Link to="/newproduct" className="link">
+              <li className="sidebarListItem">
+                <PostAddIcon className="sidebarIcon" />
+                Create a new Product
+              </li>
+            </Link>
           </ul>
         </div>
         <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Notifications</h3>
+          <h3 className="sidebarTitle">Chat bot manage</h3>
           <ul className="sidebarList">
             <li className="sidebarListItem">
               <MailOutlineIcon className="sidebarIcon" />
@@ -75,23 +95,6 @@ export default function Sidebar() {
             <li className="sidebarListItem">
               <ChatBubbleOutlineIcon className="sidebarIcon" />
               Messages
-            </li>
-          </ul>
-        </div>
-        <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Staff</h3>
-          <ul className="sidebarList">
-            <li className="sidebarListItem">
-              <WorkOutlineIcon className="sidebarIcon" />
-              Manage
-            </li>
-            <li className="sidebarListItem">
-              <TimelineIcon className="sidebarIcon" />
-              Analytics
-            </li>
-            <li className="sidebarListItem">
-              <ReportIcon className="sidebarIcon" />
-              Reports
             </li>
           </ul>
         </div>
