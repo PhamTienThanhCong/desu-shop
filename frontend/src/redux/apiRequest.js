@@ -4,6 +4,8 @@ import {
     loginStart,
     loginSuccess,
     logoutStart,
+    logoutSuccess,
+    logoutFailed,
   } from "./authSlice"
 import {
     addProduct,
@@ -29,21 +31,21 @@ export const registerUser = async (user, dispatch, navigate) => {
     dispatch(loginStart());
     try {
         const res = await axios.post("http://localhost:8000/v1/auth/register", user);
-        dispatch(loginSuccess(res.data));
-        navigate("/login");
+        return res.data;
+        // navigate("/login");
     } catch (err) {
         dispatch(loginFailed());
+        return err.response.data;
     }
 }
 
 export const logoutUser = async (dispatch, navigate) => {
     dispatch(logoutStart());
     try {
-        await axios.get("http://localhost:8000/v1/auth/logout");
-        dispatch(loginSuccess(null));
+        dispatch(logoutSuccess());
         navigate("/login");
     } catch (err) {
-        dispatch(loginFailed());
+        dispatch(logoutFailed());
     }
 }
 

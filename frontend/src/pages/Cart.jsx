@@ -13,6 +13,7 @@ import { dispatch } from 'react';
 import { clearProduct, removeProduct } from '../redux/cartRedux';
 const KEY = process.env.REACT_APP_STRIPE;
 
+
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -163,7 +164,8 @@ cursor: pointer;
 `;
 
 const Cart = () => {
-
+  
+  const user = useSelector((state) => state.auth.login.currentUser);
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart);
   // const [stripeToken, setStripeToken] = useState(null);
@@ -193,7 +195,9 @@ const Cart = () => {
       total: cart.total
     },)
     .then((response) => {
-      window.open(response.data)
+      handleClear()
+      // change page to 
+      window.location.replace(response.data);
     })
   }
 
@@ -212,7 +216,9 @@ const Cart = () => {
     // removeProductOfCart(cart.products, dispatch())
 
   };
- 
+
+  let totalPrice = 0;
+
   return (
     <Container>
       <Wrapper>
@@ -223,11 +229,21 @@ const Cart = () => {
             <TopText>Shopping Bag(2)</TopText>
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
-          <TopButton type="filled" onClick={() =>handlePayment()} >CHECKOUT NOW</TopButton>
+
+          {/* check user is null */}
+          {user ? (
+              <TopButton type="filled" onClick={() =>handlePayment()} >CHECKOUT NOW</TopButton>)
+            : (
+              <Link to = '/login' >
+                <TopButton type="filled">LOGIN TO CHECK OUT</TopButton>
+              </Link>
+            )
+          }
         </Top>
         <Bottom>
         <Info>
         {cart.products.map((product,index) => (
+          totalPrice += product.price * product.quantity,
           <Product key={index}>
             <ProductDetail>
               <Image src={product.image} />
@@ -260,19 +276,15 @@ const Cart = () => {
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+              <SummaryItemPrice>$ {totalPrice}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Estimated Shipping</SummaryItemText>
               <SummaryItemPrice>$ 5.90</SummaryItemPrice>
             </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>$ -5.90</SummaryItemPrice>
-            </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+              <SummaryItemPrice>$ {totalPrice + 5.9}</SummaryItemPrice>
             </SummaryItem>
             {/* <StripeCheckout
               name="NHAT  Shop"
@@ -285,7 +297,14 @@ const Cart = () => {
               stripeKey={KEY}
             >
           </StripeCheckout> */}
-          <Button onClick={() =>handlePayment()} >CHECKOUT NOW</Button>
+          {user ? (
+              <Button onClick={() =>handlePayment()} >CHECKOUT NOW</Button>)
+            : (
+              <Link to = '/login' >
+                <Button >LOGIN TO CHECK OUT</Button>
+              </Link>
+            )
+          }
           </Summary>
         </Bottom>
       </Wrapper>

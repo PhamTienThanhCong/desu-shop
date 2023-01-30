@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { logoutUser } from '../redux/apiRequest';
+import { Link } from 'react-router-dom';
 
 export default function LoginBtn() {
     const dispatch = useDispatch();
@@ -25,9 +26,21 @@ export default function LoginBtn() {
   }, [user]);
 
     const handleLogout = () => {
-    dispatch(logoutUser());
-
+      logoutUser(dispatch);
     };
+  if (!user) {
+    return (
+      <div>
+        <Link to="/login">
+          <Button
+            id="basic-button"
+            >
+            LOGIN
+          </Button>
+        </Link>
+      </div>
+    )
+  }
   return (
     <div>
       <Button

@@ -145,7 +145,7 @@ const Navbar = () => {
             </Link>
           </SearchContainer>
           <MenuItem>
-            <btn><LoginBtn></LoginBtn></btn>
+            <><LoginBtn></LoginBtn></>
           </MenuItem>
           <MenuItem>
             <Link to='/cart'>

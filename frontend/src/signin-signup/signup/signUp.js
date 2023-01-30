@@ -35,7 +35,7 @@ export default function SignUp() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
@@ -49,7 +49,13 @@ export default function SignUp() {
       password: data.get('password'),
     }
 
-    registerUser(newUser, dispatch, navigate);
+    const hialeart = await registerUser(newUser, dispatch, navigate);
+    if (hialeart.username) {
+      console.log("hialeart")
+      navigate('/login');
+    }else{
+      alert("Đã có lỗi xảy ra vui lòng thử lại với tài khoản khác")
+    }
   };
 
   return (

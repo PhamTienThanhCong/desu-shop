@@ -38,7 +38,7 @@ function App() {
           {/* <Route path = "/admin" element={<Admin />}/> */}
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path='/success' element={<Order />} />
+          <Route path='/success' element={<Success />} />
         </Routes>
         <ChatWindown />
         <Footer />
