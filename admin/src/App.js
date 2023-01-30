@@ -25,13 +25,13 @@ function App() {
 
   const admin = useSelector((state) => state.user);
 
-  console.log(admin);
-
   return (
     <Router>
       <Topbar />
       <div className="container">
-        <Sidebar />
+        {/* if admin.currentUser has exits */}
+        {admin.currentUser['admin'] && <Sidebar />}
+        {/* <Sidebar /> */}
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route exact path="/" element={<Home />} />

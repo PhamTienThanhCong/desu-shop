@@ -109,7 +109,7 @@ app.get('/success',cors(),async (req, res) => {
             throw error;
         } else {
             console.log(JSON.stringify(payment));
-            res.redirect('http://localhost:3000/success');
+            res.redirect('http://localhost:3006');
         }
     });
 });

@@ -94,12 +94,10 @@ const MenuItem = styled.div`
   &:hover a {
     color: red;
   }
-`;
-
+  `;
 const Navbar = () => {
   const quantity = useSelector((state) => state.cart.quantity);
   const [searchInput, setSearchInput] = useState('');
-
   return (
     <Container>
       <Wrapper>
@@ -129,7 +127,7 @@ const Navbar = () => {
               onChange={(e) => setSearchInput(e.target.value)}
             />
             <Link
-              to={`/products?search=${searchInput}`}
+              to={`/produ cts?search=${searchInput}`}
               style={{ background: 'none', border: 'none', display: 'flex' }}
             >
               <SearchIcon style={{ color: 'gray', fontSize: 16 }} />
