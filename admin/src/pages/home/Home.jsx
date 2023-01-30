@@ -8,6 +8,8 @@ import { useEffect, useMemo, useState } from "react";
 import { userRequest } from "../../requestMethods";
 
 export default function Home() {
+  // change name page
+  document.title = "Admin Dashboard";
   const [userStats, setUserStats] = useState([]);
 
   const MONTHS = useMemo(

@@ -11,7 +11,7 @@ import { useEffect } from "react";
 export default function ViewCategory() {
 
   const [category, setCategory] = useState({});
-  document.title = `view user ${category.name}`;
+  document.title = `Category ${category.name}`;
   const [loading, setLoading] = useState(false);
   // get id from url
   const id = window.location.pathname.split("/")[2];

@@ -14,7 +14,7 @@ import Paper from '@mui/material/Paper';
 
 export default function ChatList() {
   // get data user from http://localhost:8000/v1/user
-  document.title = "List user";
+  document.title = "Tag chat List";
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   // paging data user

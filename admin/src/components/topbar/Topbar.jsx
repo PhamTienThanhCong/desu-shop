@@ -62,7 +62,7 @@ export default function Topbar() {
                   </Button>
                   <Menu {...bindMenu(popupState)}>
                     <MenuItem onClick={popupState.close}>
-                      {admin.currentUser['fullname']}
+                      {admin.currentUser['username']}
                     </MenuItem>
                     <Link 
                       to={`/user/${admin.currentUser['_id']}`} 

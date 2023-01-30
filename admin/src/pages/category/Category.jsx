@@ -14,7 +14,7 @@ import Paper from '@mui/material/Paper';
 
 export default function UserList() {
   // get data user from http://localhost:8000/v1/user
-  document.title = "List user";
+  document.title = "Category List";
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   // paging data user
