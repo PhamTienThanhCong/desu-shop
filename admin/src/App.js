@@ -18,20 +18,15 @@ import NewChat from "./pages/chat/newChat/NewChat";
 import ViewChat from "./pages/chat/viewChat/ViewChat";
 import Training from "./pages/chat/training/Training";
 // import Login from "./pages/login/Login";
-import { useSelector } from "react-redux";
 
 
 function App() {
-
-  const admin = useSelector((state) => state.user);
 
   return (
     <Router>
       <Topbar />
       <div className="container">
-        {/* if admin.currentUser has exits */}
-        {admin.currentUser['admin'] && <Sidebar />}
-        {/* <Sidebar /> */}
+        <Sidebar />
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route exact path="/" element={<Home />} />

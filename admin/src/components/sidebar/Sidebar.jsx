@@ -10,8 +10,13 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import CategoryIcon from '@mui/icons-material/Category';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Sidebar() {
+  const admin = useSelector((state) => state.user);
+  if (admin.currentUser === null || admin.currentUser['admin'] === false) {
+    return (<></>)
+  }
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
