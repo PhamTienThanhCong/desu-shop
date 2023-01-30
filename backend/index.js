@@ -59,7 +59,7 @@ app.post('/pay', cors(),(req, res) => {
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": "http://localhost:8000/success",
+            "return_url": "http://localhost:3006/success",
             "cancel_url": "http://localhost:8000/cancel"
         },
         "transactions": [{

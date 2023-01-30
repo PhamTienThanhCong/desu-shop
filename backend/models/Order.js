@@ -7,27 +7,16 @@ const OrderSchema = new mongoose.Schema({
         required: true
     },
     products: [{
-        productId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Product',
-            required: true
-        },
-        quantity: {
-            type: Number,
-            required: true
-        }
-    }],
-    address: {
-        type: String,
-        required: true
-    },
+        type: Object,
+        required: true}
+    ],
     status: {
         type: String,
         default: 'Pending'
     },
     paymentType: {
         type: String,
-        required: true
+        default : 'Paypal'
     }
     
 },

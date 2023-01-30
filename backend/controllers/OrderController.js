@@ -26,19 +26,16 @@ const OrderController = {
         try {
             const user = await User.findById(req.params.userId);
             const cart = await Cart.findById(user.cart);
-            const products = cart.products;
+            const products = req.body.products
             const newOrder = new Order({
                 userId: user.id,
                 products: products,
-                address: req.body.address,
-                paymentType: req.body.paymentType
             });
             await newOrder.save();
-            await cart.updateOne({$set: {products: []}});
-            await cart.save();
             return res.status(200).json(newOrder);
         }
         catch(err) {
+            console.log(err);
             return res.status(500).json(err);
         }
     },
