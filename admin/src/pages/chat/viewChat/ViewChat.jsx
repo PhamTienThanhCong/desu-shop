@@ -1,5 +1,4 @@
 import "./ViewChat.css";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import CloseIcon from '@mui/icons-material/Close';
 import { useState } from "react";
@@ -142,7 +141,7 @@ export default function ViewChat() {
         </div>
 
         <div className="newUserItem">
-          <button className="newUserButton">Edit new user</button>
+          <button className="newUserButton">Edit tag</button>
         </div>
       </form>
       <Link to="/chats">

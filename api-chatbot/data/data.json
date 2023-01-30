@@ -23,13 +23,15 @@
             "description": "điện thoại iphone X",
             "patterns": [
                 "còn iphone x không",
-                "iphone x"
+                "iphone x",
+                "Giá iphone x bao nhiêu",
+                "giá iphonex"
             ],
             "responses": [
-                "dạ iphone x bên e còn ạ"
+                "dạ iphone x bên em đang bán với giá là 5tr999 ạ, quý khách có thể đặt hàng trực tiếp hoặc ra cửa hàng bên em để mua và thử ạ"
             ],
             "createdAt": "2023-01-29T11:31:50.641Z",
-            "updatedAt": "2023-01-29T11:31:50.641Z",
+            "updatedAt": "2023-01-30T16:14:59.796Z",
             "id": "63d6592643af0bbabafcf166"
         },
         {
@@ -58,6 +60,41 @@
             "createdAt": "2023-01-29T11:43:27.273Z",
             "updatedAt": "2023-01-29T13:56:56.546Z",
             "id": "63d65bdf43af0bbabafcf1a6"
+        },
+        {
+            "tag": "address",
+            "description": "Vị trí cửa hàng",
+            "patterns": [
+                "Vị trí",
+                "Shop ở đâu",
+                "cửa hàng ở đâu",
+                "mua hàng trực tiếp ở đâu",
+                "chỗ nào",
+                "cửa hàng ở chỗ nào"
+            ],
+            "responses": [
+                "Dạ shop em ở Cộng Hòa, Phường 13, Tân Bình, TP.HCM"
+            ],
+            "createdAt": "2023-01-30T16:09:05.858Z",
+            "updatedAt": "2023-01-30T16:10:10.375Z",
+            "id": "63d7eba160d9da872d7824f0"
+        },
+        {
+            "tag": "pay",
+            "description": "thanh toán như thế nào ?",
+            "patterns": [
+                "thanh toán như thế nào",
+                "thanh toán bằng gì",
+                "thanh toán bằng momo được không",
+                "có dùng tiền mặt được không",
+                "thoan toán bằng tiền mặt được không"
+            ],
+            "responses": [
+                "Dạ cửa shop bên em đang thanh toán trực tiếp bằng paypal ạ. hoặc quý khách có thể ra cửa hàng của em để mua trực tiếp ạ"
+            ],
+            "createdAt": "2023-01-30T16:12:24.410Z",
+            "updatedAt": "2023-01-30T16:13:22.502Z",
+            "id": "63d7ec6860d9da872d7824fc"
         }
     ]
 }
