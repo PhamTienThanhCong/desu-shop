@@ -18,7 +18,7 @@ import Footer from './components/Footer';
 import Announcement from './components/Announcement';
 import Navbar from './components/Navbar';
 import ChatWindown from './components/ChatWindown';
-
+import Order from './pages/Order';
 function App() {
 
   return (
@@ -38,7 +38,7 @@ function App() {
           {/* <Route path = "/admin" element={<Admin />}/> */}
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path='/success' element={<Success />} />
+          <Route path='/success' element={<Order />} />
         </Routes>
         <ChatWindown />
         <Footer />

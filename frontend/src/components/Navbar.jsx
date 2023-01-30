@@ -1,4 +1,4 @@
-import { Badge } from '@mui/material';
+import { Badge, Button } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import React, { useState, useEffect } from 'react';
@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { mobile, screen10 } from '../responsive';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import LoginBtn from './loginBtn';
 
 const Container = styled.div`
   display: contents;
@@ -96,6 +97,16 @@ const MenuItem = styled.div`
   }
   `;
 const Navbar = () => {
+  //change login to user if i was logged in
+  const user = useSelector((state) => state.auth.login.currentUser);
+  const [loginDisplay, setLoginDisplay] = useState('Login');
+  useEffect(() => {
+    if (user) {
+      setLoginDisplay(user.username);
+    }
+  }, [user]);
+
+
   const quantity = useSelector((state) => state.cart.quantity);
   const [searchInput, setSearchInput] = useState('');
   return (
@@ -134,7 +145,7 @@ const Navbar = () => {
             </Link>
           </SearchContainer>
           <MenuItem>
-            <Link to='/login'>Login</Link>
+            <btn><LoginBtn></LoginBtn></btn>
           </MenuItem>
           <MenuItem>
             <Link to='/cart'>

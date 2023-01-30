@@ -164,6 +164,7 @@ cursor: pointer;
 
 const Cart = () => {
 
+  const dispatch = useDispatch();
   const cart = useSelector(state => state.cart);
   // const [stripeToken, setStripeToken] = useState(null);
   const history = useNavigate();
@@ -197,19 +198,18 @@ const Cart = () => {
   }
 
   const handleClear = () => {
-    //clear cart
-    // dispatch(clearProduct(cart.products))
-    // clear local storage
-    localStorage.removeItem("cart");
-    // reload page
-    //clear cart redux
     dispatch(clearProduct(cart.products))
-    window.location.reload();
   };
 
   const handleDelete = () => {
     //delete product
-    removeProductOfCart(cart.products, dispatch())
+
+
+    dispatch(removeProduct(cart.products))
+    // dispatch(removeProductOfCart(cart.products))
+    // dispatch(removeProductOfCart(cart.products, dispatch()))
+
+    // removeProductOfCart(cart.products, dispatch())
 
   };
  
@@ -249,7 +249,7 @@ const Cart = () => {
               </ProductPrice>
             </PriceDetail>
             <PriceDetail>
-              <Button onClick={handleDelete} style={{    width: 70, height: 36}}>Xóa</Button>
+              <Button onClick={handleDelete} style={{    width: 70, height: 36}}>Delete</Button>
             </PriceDetail>
           </Product>
         ))}
