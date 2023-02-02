@@ -7,7 +7,7 @@ import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
-import { clearCart, loginUser, removeProductOfCart } from '../redux/apiRequest';
+import { clearCart, loginUser, removeProductOfCart,removeProductFromCart } from '../redux/apiRequest';
 import { useDispatch } from 'react-redux';
 import { dispatch } from 'react';
 import { clearProduct, removeProduct } from '../redux/cartRedux';
@@ -170,49 +170,31 @@ const Cart = () => {
   const cart = useSelector(state => state.cart);
   // tìm những sản phẩm trong cart là Nan và xóa đi
   const removeProductOfCart = (id) => {
-    dispatch(removeProduct(id));
+    removeProductFromCart(id, user._id, dispatch);
   }
-  const clearCart = () => {
-    dispatch(clearProduct());
-  }
-  // const [stripeToken, setStripeToken] = useState(null);
-  const history = useNavigate();
-
-  // const onToken = (token) => {
-  //   setStripeToken(token);
-  // };
-
-  // useEffect(() => {
-  //   const makeRequest = async () => {
-  //     try {
-  //       const res = await userRequest.post("/checkout/payment", {
-  //         tokenId: stripeToken.id,
-  //         amount: 500,
-  //       });
-  //       history("/success", {
-  //         stripeData: res.data,
-  //         products: cart, });
-  //     } catch {}
-  //   };
-  //   stripeToken && makeRequest();
-  // }, [stripeToken, cart.total, history]);
   const handlePayment = () => {
     if (cart.products.length === 0) {
       alert("Giỏ hàng trống");
       return;
     }
+    axios.post(`http://localhost:8000/v1/order/${user._id}`, {
+      "totalPrice": totalPrice + 5.9
+    }, {
+      headers: {
+        'Authorization': `Bearer ${user.token}`
+      }
+    })
     axios.post('http://localhost:8000/pay', {
       total: cart.total
     },)
     .then((response) => {
-      handleClear()
       // change page to 
       window.location.replace(response.data);
     })
   }
 
   const handleClear = () => {
-    dispatch(clearProduct(cart.products))
+    clearCart(user._id, dispatch);
   };
 
   const handleDelete = (id_product) => {

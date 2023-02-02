@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { removeProductFromCart, clearCart } from "./apiRequest";
 
 const cartSlice = createSlice({
   name: "cart",
@@ -29,6 +30,7 @@ const cartSlice = createSlice({
         );
         state.total -= action.payload[0].price * action.payload[0].quantity;
         state.quantity = state.products.length;
+
     },
     clearProduct: (state, action) => {
       state.quantity = 0;

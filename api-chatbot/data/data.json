@@ -95,6 +95,37 @@
             "createdAt": "2023-01-30T16:12:24.410Z",
             "updatedAt": "2023-01-30T16:13:22.502Z",
             "id": "63d7ec6860d9da872d7824fc"
+        },
+        {
+            "tag": "xinhgai",
+            "description": "ngọc có xinh gái không",
+            "patterns": [
+                "ngọc có xinh gái không",
+                "Hồng Ngọc",
+                "Đỗ Hồng Ngọc"
+            ],
+            "responses": [
+                "Có ạ bạn Ngọc Xin gái nhất trần đời"
+            ],
+            "createdAt": "2023-02-02T06:50:14.558Z",
+            "updatedAt": "2023-02-02T06:55:36.840Z",
+            "id": "63db5d266bcbda1085de770e"
+        },
+        {
+            "tag": "BeNhat",
+            "description": "Thông tin về admin",
+            "patterns": [
+                "Ai là chủ web này",
+                "Chủ trang web ",
+                "admin là ai",
+                "ai là admin"
+            ],
+            "responses": [
+                "Dạ Nhật Dexu là chủ trang web này ạ"
+            ],
+            "createdAt": "2023-02-02T06:57:22.228Z",
+            "updatedAt": "2023-02-02T06:57:22.228Z",
+            "id": "63db5ed26bcbda1085de7727"
         }
     ]
 }

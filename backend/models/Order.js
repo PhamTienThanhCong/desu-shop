@@ -10,6 +10,10 @@ const OrderSchema = new mongoose.Schema({
         type: Object,
         required: true}
     ],
+    totalPrice: {
+        type: Number,
+        required: true
+    },
     status: {
         type: String,
         default: 'Pending'
@@ -22,4 +26,4 @@ const OrderSchema = new mongoose.Schema({
 },
 {timestamps: true});
 
-module.exports = mongoose.model('Order', OrderSchema);
+module.exports = mongoose.model('GioHang', OrderSchema);

@@ -13,6 +13,16 @@ const OrderController = {
             return res.status(500).json(err);
         }
     },
+    // get user orders
+    getUserOrders: async(req, res) => {
+        try {
+            const orders = await Order.find({userId: req.params.userId});
+            return res.status(200).json(orders);
+        }
+        catch(err) {
+            return res.status(500).json(err);
+        }
+    },
     getOrder: async(req, res) => {
         try {
             const order = await Order.findById(req.params.id);
@@ -26,16 +36,31 @@ const OrderController = {
         try {
             const user = await User.findById(req.params.userId);
             const cart = await Cart.findById(user.cart);
-            const products = req.body.products
+            const products = cart.products;
+            cart.products = [];
+            await cart.save();
+            // map products to get product details
+            const productsWithDetails = await Promise.all(products.map(async(product) => {
+                const productDetails = await Product.findById(product.productId);
+                return {
+                    productId: product.productId,
+                    quantity: product.quantity,
+                    name: productDetails.name,
+                    price: productDetails.price,
+                    image: productDetails.image,
+                }
+            }));
+
             const newOrder = new Order({
-                userId: user.id,
-                products: products,
-            });
+                    userId: user.id,
+                    products: productsWithDetails,
+                    totalPrice: req.body.totalPrice,
+                });
             await newOrder.save();
             return res.status(200).json(newOrder);
         }
         catch(err) {
-            console.log(err);
+            // console.log(err);
             return res.status(500).json(err);
         }
     },

@@ -24,6 +24,7 @@ export const loginUser = async (user, dispatch, navigate) => {
         dispatch(loginSuccess(res.data));
         navigate("/");
     } catch (err) {
+        alert("Invalid username or password")
         dispatch(loginFailed());
     }
 }
@@ -43,6 +44,7 @@ export const logoutUser = async (dispatch, navigate) => {
     dispatch(logoutStart());
     try {
         dispatch(logoutSuccess());
+        dispatch(clearProduct());
         navigate("/login");
     } catch (err) {
         dispatch(logoutFailed());
@@ -50,20 +52,17 @@ export const logoutUser = async (dispatch, navigate) => {
 }
 
 export const addProductToCart = async (props) => {
-    // console.log(props.userId, props.productId);
-    // const res = await axios.post(`http://localhost:8000/v1/cart/${props.userId}/${props.productId}`, {quantity:props.quantity});
-    // props.dispatch(addProduct(res.data));
-    //add product to cart
     const res = await axios.post(`http://localhost:8000/v1/cart/${props.userId}/${props.productId}`, {quantity:props.quantity});
     // props.dispatch(addProduct(res.data));
 }
-export const removeProductFromCart = async (product, user, dispatch) => {
-    const res = await axios.delete(`http://localhost:8000/v1/cart/${user.id}/${product.id}`);
-    dispatch(removeProduct(res.data));
+export const removeProductFromCart = async (productId, user, dispatch) => {
+    const res = await axios.delete(`http://localhost:8000/v1/cart/${user}/${productId}`);
+    dispatch(removeProduct(productId));
 }
 
-export const clearCart = async ( dispatch) => {
+export const clearCart = async ( user, dispatch) => {
     //clear cart in redux
+    const res = await axios.delete(`http://localhost:8000/v1/cart/${user}`);
     dispatch(clearProduct());
 }
 

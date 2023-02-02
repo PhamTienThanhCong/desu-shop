@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useLocation } from "react-router";
-import { userRequest } from "../requestMethods";
 import { Link } from "react-router-dom";
+import { clearProduct } from "../redux/cartRedux";
+import { useDispatch } from "react-redux";
 
 const Success = () => {
+  const dispatch = useDispatch();
 
+  dispatch(clearProduct())
   
   return (
     <div

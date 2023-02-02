@@ -19,6 +19,7 @@ import Announcement from './components/Announcement';
 import Navbar from './components/Navbar';
 import ChatWindown from './components/ChatWindown';
 import Order from './pages/Order';
+import ViewOrder from './pages/ViewOrder';
 function App() {
 
   return (
@@ -35,7 +36,8 @@ function App() {
           <Route path='/cart' element={<Cart />} />
           <Route path="/login" element={<SignIn />} />
           <Route path="/register" element={<SignUp />} />
-          {/* <Route path = "/admin" element={<Admin />}/> */}
+          <Route path = "/my-order" element={<Order />}/>
+          <Route path = "/my-order/:id" element={<ViewOrder />}/>
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path='/success' element={<Success />} />

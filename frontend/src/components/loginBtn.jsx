@@ -6,9 +6,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { logoutUser } from '../redux/apiRequest';
 import { Link } from 'react-router-dom';
+import { Navigate } from "react-router-dom";
 
 export default function LoginBtn() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -25,9 +26,9 @@ export default function LoginBtn() {
     }
   }, [user]);
 
-    const handleLogout = () => {
-      logoutUser(dispatch);
-    };
+  const handleLogout = () => {
+    logoutUser(dispatch);
+  };
   if (!user) {
     return (
       <div>
@@ -61,7 +62,12 @@ export default function LoginBtn() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <Link to="/my-order" style={{ 
+          color: 'black',
+          textDecoration: 'none',
+         }}>
+          <MenuItem >My order</MenuItem>
+        </Link>
         <MenuItem onClick={handleClose}>My account</MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>

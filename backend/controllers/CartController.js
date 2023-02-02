@@ -83,6 +83,19 @@ const CartController = {
             return res.status(500).json(err);
         }
 
+    },
+
+    clearCart: async(req, res) => {
+        try {
+            const user = await User.findById(req.params.id);
+            const cart = await Cart.findById(user.cart);
+            cart.products = [];
+            await cart.save();
+            return res.status(200).json(cart);
+        }
+        catch(err) {
+            return res.status(500).json(err);
+        }
     }
 }
 

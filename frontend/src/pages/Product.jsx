@@ -1,9 +1,6 @@
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import styled from "styled-components";
-import Announcement from "../components/Announcement";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
 import { useLocation } from "react-router-dom";
@@ -11,8 +8,9 @@ import { useEffect, useState } from "react";
 import { publicRequest } from "../requestMethods";
 import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
-import { addProductToCart, removeProductFromCart } from '../redux/apiRequest';
+import { addProductToCart } from '../redux/apiRequest';
 import { useSelector } from 'react-redux';
+import { Link } from "react-router-dom";
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -152,14 +150,16 @@ const Product = () => {
   };
 
   const handleClick = () => {
-    
-    console.log(quantity, product.id, userId)
+    if (!user) {
+      alert('Please login to add product to cart')
+      return;
+    }
     const productId = product.id;
     addProductToCart({quantity, productId, userId, dispatch} )
     dispatch(
       addProduct({ ...product, quantity })
       );
-      // console.log(product, user)
+      console.log(product, user)
   };
 
   return (
@@ -178,7 +178,9 @@ const Product = () => {
               <Amount>{quantity}</Amount>
               <AddIcon onClick={() => handleQuantity("inc")} />
             </AmountContainer>
-            <Button onClick={handleClick}>ADD TO CART</Button>
+            {
+              user ? <Button onClick={handleClick}>ADD TO CART</Button> : <Link to="/login"><Button>LOGIN TO ADD</Button></Link>
+            }
           </AddContainer>
         </InfoContainer>
       </Wrapper>
