@@ -17,6 +17,8 @@ import ChatList from "./pages/chat/chatList/ChatList";
 import NewChat from "./pages/chat/newChat/NewChat";
 import ViewChat from "./pages/chat/viewChat/ViewChat";
 import Training from "./pages/chat/training/Training";
+import OrderList from "./pages/order/orderList/OrderList";
+import Order from "./pages/order/order/Order";
 // import Login from "./pages/login/Login";
 
 
@@ -43,6 +45,8 @@ function App() {
           <Route path="/add-tag" element={<NewChat />} />
           <Route path="/chat/:id" element={<ViewChat />} />
           <Route path="/training" element={<Training />} />
+          <Route path="/orders" element={<OrderList />} />
+          <Route path="/order/:id" element={<Order />} />
         </Routes>
       </div>
     </Router>

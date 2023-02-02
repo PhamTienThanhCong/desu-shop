@@ -7,7 +7,25 @@ const OrderController = {
     getOrders: async(req, res) => {
         try {
             const orders = await Order.find();
-            return res.status(200).json(orders);
+            // get user details and add to order
+            const ordersWithUserDetails = await Promise.all(orders.map(async(order) => {
+                const user = await User.findById(order.userId);
+                return {
+                    _id: order._id,
+                    userId: order.userId,
+                    products: order.products,
+                    totalPrice: order.totalPrice,
+                    status: order.status,
+                    createdAt: order.createdAt,
+                    user: {
+                        username: user.username,
+                        email: user.email,
+                        phone: user.phone,
+                        address: user.address,
+                    }
+                }
+            }));
+            return res.status(200).json(ordersWithUserDetails);
         }
         catch(err) {
             return res.status(500).json(err);
@@ -26,7 +44,23 @@ const OrderController = {
     getOrder: async(req, res) => {
         try {
             const order = await Order.findById(req.params.id);
-            return res.status(200).json(order);
+            // get user and add to order
+            const user = await User.findById(order.userId);
+            const orderWithUserDetails = {
+                _id: order._id,
+                userId: order.userId,
+                products: order.products,
+                totalPrice: order.totalPrice,
+                status: order.status,
+                createdAt: order.createdAt,
+                user: {
+                    username: user.username,
+                    email: user.email,
+                    phone: user.phone,
+                    address: user.address,
+                }
+            }
+            return res.status(200).json(orderWithUserDetails);
         }
         catch(err) {
             return res.status(500).json(err);

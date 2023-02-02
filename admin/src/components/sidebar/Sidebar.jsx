@@ -9,6 +9,7 @@ import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import CategoryIcon from '@mui/icons-material/Category';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+import ShoppingCart from '@mui/icons-material/ShoppingCart';
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -24,10 +25,16 @@ export default function Sidebar() {
           <h3 className="sidebarTitle">Dashboard</h3>
           <ul className="sidebarList">
             <Link to="/" className="link">
-            <li className="sidebarListItem">
-              <LineStyleIcon className="sidebarIcon" />
-              Home
-            </li>
+              <li className="sidebarListItem">
+                <LineStyleIcon className="sidebarIcon" />
+                Home
+              </li>
+            </Link>
+            <Link to="/orders" className="link">
+              <li className="sidebarListItem">
+                <ShoppingCart className="sidebarIcon" />
+                orders
+              </li>
             </Link>
           </ul>
         </div>
