@@ -55,10 +55,7 @@ export const addProductToCart = async (props) => {
     // props.dispatch(addProduct(res.data));
     //add product to cart
     const res = await axios.post(`http://localhost:8000/v1/cart/${props.userId}/${props.productId}`, {quantity:props.quantity});
-    props.dispatch(addProduct(res.data));
-
-
-
+    // props.dispatch(addProduct(res.data));
 }
 export const removeProductFromCart = async (product, user, dispatch) => {
     const res = await axios.delete(`http://localhost:8000/v1/cart/${user.id}/${product.id}`);

@@ -138,7 +138,7 @@ const Navbar = () => {
               onChange={(e) => setSearchInput(e.target.value)}
             />
             <Link
-              to={`/produ cts?search=${searchInput}`}
+              to={`/products?search=${searchInput}`}
               style={{ background: 'none', border: 'none', display: 'flex' }}
             >
               <SearchIcon style={{ color: 'gray', fontSize: 16 }} />

@@ -158,8 +158,6 @@ const Product = () => {
     addProductToCart({quantity, productId, userId, dispatch} )
     dispatch(
       addProduct({ ...product, quantity })
-    
-      
       );
       // console.log(product, user)
   };

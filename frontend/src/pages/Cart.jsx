@@ -168,6 +168,13 @@ const Cart = () => {
   const user = useSelector((state) => state.auth.login.currentUser);
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart);
+  // tìm những sản phẩm trong cart là Nan và xóa đi
+  const removeProductOfCart = (id) => {
+    dispatch(removeProduct(id));
+  }
+  const clearCart = () => {
+    dispatch(clearProduct());
+  }
   // const [stripeToken, setStripeToken] = useState(null);
   const history = useNavigate();
 
@@ -190,7 +197,10 @@ const Cart = () => {
   //   stripeToken && makeRequest();
   // }, [stripeToken, cart.total, history]);
   const handlePayment = () => {
-    console.log(cart.total);
+    if (cart.products.length === 0) {
+      alert("Giỏ hàng trống");
+      return;
+    }
     axios.post('http://localhost:8000/pay', {
       total: cart.total
     },)
@@ -205,7 +215,7 @@ const Cart = () => {
     dispatch(clearProduct(cart.products))
   };
 
-  const handleDelete = () => {
+  const handleDelete = (id_product) => {
     //delete product
 
 
@@ -265,7 +275,11 @@ const Cart = () => {
               </ProductPrice>
             </PriceDetail>
             <PriceDetail>
-              <Button onClick={handleDelete} style={{    width: 70, height: 36}}>Delete</Button>
+              <Button onClick={ 
+                () => {
+                  removeProductOfCart(product.id)
+                }
+               } style={{    width: 70, height: 36}}>Delete</Button>
             </PriceDetail>
           </Product>
         ))}
