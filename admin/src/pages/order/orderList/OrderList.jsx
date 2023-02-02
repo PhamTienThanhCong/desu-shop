@@ -17,6 +17,7 @@ export default function OrderList() {
   document.title = "Order List";
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+
   // paging data user
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(1);
@@ -42,6 +43,15 @@ export default function OrderList() {
     <div className="userList">
       <div className="userListTitleContainer">
         <h1 className="userListTitle">Order list</h1>
+        {/* select option */}
+        <div className="userListSelect">
+          <select className="userListSelectOption" name="active" id="active">
+            <option value="1">All</option>
+            <option value="2">Pending</option>
+            <option value="3">Accepted</option>
+            <option value="4">Rejected</option>
+          </select>
+        </div>
       </div>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">

@@ -101,20 +101,9 @@ const OrderController = {
     updateOrder: async(req, res) => {
         try {
             const order = await Order.findById(req.params.id);
-            if(req.body.userId) {
-                order.userId = req.body.userId;
-            }
-            if(req.body.products) {
-                order.products = req.body.products;
-            }
-            if(req.body.address) {
-                order.address = req.body.address;
-            }
+
             if(req.body.status) {
                 order.status = req.body.status;
-            }
-            if(req.body.paymentType) {
-                order.paymentType = req.body.paymentType;
             }
             await order.save();
             return res.status(200).json(order);

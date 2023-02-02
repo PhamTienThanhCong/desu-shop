@@ -71,3 +71,11 @@
 }
 
 /* userList */
+.userListSelect{
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.userListSelectOption{
+  padding: 10px;
+}

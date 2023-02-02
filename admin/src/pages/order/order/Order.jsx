@@ -11,6 +11,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import DoneIcon from '@mui/icons-material/Done';
+import Stack from '@mui/material/Stack';
+import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 
 
@@ -32,6 +35,25 @@ export default function Order() {
   useEffect(() => {
     getData();
   }, []);
+
+  const handleClickAccepted = async () => {
+    let statusOrder = "Accepted";
+    const res = await axios.put(`http://localhost:8000/v1/order/${id}`, {
+      status: statusOrder
+    });
+    getData();
+  }
+
+  const handleClickRejected = async () => {
+    let statusOrder = "Rejected";
+    const res = await axios.put(`http://localhost:8000/v1/order/${id}`, {
+      status: statusOrder
+    });
+
+    getData();
+  }
+
+
 
   return (
     <div className="userList">
@@ -57,9 +79,25 @@ export default function Order() {
             <span>Order total: </span>
             {data.totalPrice}$
           </p>
-          <Button variant="contained" endIcon={<SendIcon />}>
-            Update Order
-          </Button>
+          {/* button */}
+          {
+            data.status === "Pending" ? (
+              <div>
+                  <Stack direction="row" spacing={2}>
+                    <Button variant="contained" onClick={ handleClickAccepted } endIcon={<DoneIcon />}>
+                      Accept
+                    </Button>
+                    <Button variant="outlined" onClick={ handleClickRejected } startIcon={<DeleteIcon />}>
+                      Delete
+                    </Button>
+                  </Stack>
+              </div>
+            ) : (
+              <Button variant="contained" disabled endIcon={<DoneIcon />}>
+                Order has been {data.status}
+              </Button>
+            )
+          }
         </div>
         <div className="inforProductinforUser">
           <p>

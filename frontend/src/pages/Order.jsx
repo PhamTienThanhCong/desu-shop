@@ -92,7 +92,7 @@ const Order = () => {
                       size="small"
                       variant="filledTonal"
                       style={{
-                        backgroundColor: item.status === "pending" ? "orange" : item.status === "accepted" ? "green" : "red",
+                        backgroundColor: item.status === "Pending" ? "gray" : item.status === "Accepted" ? "green" : "red",
                         color: "white",
                       }}
                     >
