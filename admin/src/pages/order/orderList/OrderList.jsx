@@ -17,6 +17,7 @@ export default function OrderList() {
   document.title = "Order List";
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [Filter, setFilter] = useState("All");
 
   // paging data user
   const [page, setPage] = useState(1);
@@ -35,6 +36,10 @@ export default function OrderList() {
     }
   }
 
+  const handleChangeFilter = (e) => {
+    setFilter(e.target.value);
+  }
+
   useEffect(() => {
     getData();
   }, []);
@@ -45,11 +50,11 @@ export default function OrderList() {
         <h1 className="userListTitle">Order list</h1>
         {/* select option */}
         <div className="userListSelect">
-          <select className="userListSelectOption" name="active" id="active">
-            <option value="1">All</option>
-            <option value="2">Pending</option>
-            <option value="3">Accepted</option>
-            <option value="4">Rejected</option>
+          <select onChange={ handleChangeFilter } className="userListSelectOption" name="active" id="active">
+            <option value="All">All</option>
+            <option value="Pending">Pending</option>
+            <option value="Accepted">Accepted</option>
+            <option value="Rejected">Rejected</option>
           </select>
         </div>
       </div>
@@ -83,7 +88,13 @@ export default function OrderList() {
               </TableRow>
             ) : (
               // data
-              data.slice((page - 1) * 10, page * 10).map((item) => (
+              data.filter((item) => {
+                if (Filter === "All") {
+                  return item;
+                }else{
+                  return item.status === Filter;
+                }
+              }).slice((page - 1) * 10, page * 10).map((item) => (
                 <TableRow
                   key={item.id}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
