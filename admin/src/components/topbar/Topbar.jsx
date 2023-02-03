@@ -12,6 +12,7 @@ import { logoutUser } from "../../redux/apiCalls";
 import { useDispatch } from "react-redux";
 
 export default function Topbar() {
+  console.log("topbar");
   const admin = useSelector((state) => state.user);
   if (admin.currentUser === null || admin.currentUser['admin'] === false) {
     if (window.location.pathname !== "/login") {
