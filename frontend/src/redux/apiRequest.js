@@ -20,7 +20,7 @@ export const loginUser = async (user, dispatch, navigate) => {
 
     dispatch(loginStart());
     try {
-        const res = await axios.post("http://localhost:8000/v1/auth/login", user);
+        const res = await axios.post("https://nhat-desu-server.onrender.com/v1/auth/login", user);
         dispatch(loginSuccess(res.data));
         navigate("/");
     } catch (err) {
@@ -31,7 +31,7 @@ export const loginUser = async (user, dispatch, navigate) => {
 export const registerUser = async (user, dispatch, navigate) => {
     dispatch(loginStart());
     try {
-        const res = await axios.post("http://localhost:8000/v1/auth/register", user);
+        const res = await axios.post("https://nhat-desu-server.onrender.com/v1/auth/register", user);
         return res.data;
         // navigate("/login");
     } catch (err) {
@@ -52,17 +52,17 @@ export const logoutUser = async (dispatch, navigate) => {
 }
 
 export const addProductToCart = async (props) => {
-    const res = await axios.post(`http://localhost:8000/v1/cart/${props.userId}/${props.productId}`, {quantity:props.quantity});
+    const res = await axios.post(`https://nhat-desu-server.onrender.com/v1/cart/${props.userId}/${props.productId}`, {quantity:props.quantity});
     // props.dispatch(addProduct(res.data));
 }
 export const removeProductFromCart = async (productId, user, dispatch) => {
-    const res = await axios.delete(`http://localhost:8000/v1/cart/${user}/${productId}`);
+    const res = await axios.delete(`https://nhat-desu-server.onrender.com/v1/cart/${user}/${productId}`);
     dispatch(removeProduct(productId));
 }
 
 export const clearCart = async ( user, dispatch) => {
     //clear cart in redux
-    const res = await axios.delete(`http://localhost:8000/v1/cart/${user}`);
+    const res = await axios.delete(`https://nhat-desu-server.onrender.com/v1/cart/${user}`);
     dispatch(clearProduct());
 }
 

@@ -18,7 +18,7 @@ import SendIcon from '@mui/icons-material/Send';
 
 
 export default function Order() {
-  // get data user from http://localhost:8000/v1/user
+  // get data user from https://nhat-desu-server.onrender.com/v1/user
   document.title = "Order details";
   const id = window.location.pathname.split("/")[2];
   const [data, setData] = useState([]);
@@ -27,7 +27,7 @@ export default function Order() {
 
   const getData = async () => {
     setLoading(true);
-    const res = await axios.get(`http://localhost:8000/v1/order/${id}`);
+    const res = await axios.get(`https://nhat-desu-server.onrender.com/v1/order/${id}`);
     setData(res.data);
     setLoading(false);
   }
@@ -38,7 +38,7 @@ export default function Order() {
 
   const handleClickAccepted = async () => {
     let statusOrder = "Accepted";
-    const res = await axios.put(`http://localhost:8000/v1/order/${id}`, {
+    const res = await axios.put(`https://nhat-desu-server.onrender.com/v1/order/${id}`, {
       status: statusOrder
     });
     getData();
@@ -46,7 +46,7 @@ export default function Order() {
 
   const handleClickRejected = async () => {
     let statusOrder = "Rejected";
-    const res = await axios.put(`http://localhost:8000/v1/order/${id}`, {
+    const res = await axios.put(`https://nhat-desu-server.onrender.com/v1/order/${id}`, {
       status: statusOrder
     });
 

@@ -25,11 +25,11 @@ const Products = ({ cat, filters, sort, search }) => {
         setLoading(true);
         let url = '';
         if (cat) {
-          url = `http://localhost:8000/v1/product?category=${cat}`;
+          url = `https://nhat-desu-server.onrender.com/v1/product?category=${cat}`;
         } else if (search) {
-          url = `http://localhost:8000/v1/product${search}`;
+          url = `https://nhat-desu-server.onrender.com/v1/product${search}`;
         } else {
-          url = 'http://localhost:8000/v1/product';
+          url = 'https://nhat-desu-server.onrender.com/v1/product';
         }
         console.log(url);
         const res = await axios.get(url);

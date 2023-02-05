@@ -177,14 +177,14 @@ const Cart = () => {
       alert("Giỏ hàng trống");
       return;
     }
-    axios.post(`http://localhost:8000/v1/order/${user._id}`, {
+    axios.post(`https://nhat-desu-server.onrender.com/v1/order/${user._id}`, {
       "totalPrice": totalPrice + 5.9
     }, {
       headers: {
         'Authorization': `Bearer ${user.token}`
       }
     })
-    axios.post('http://localhost:8000/pay', {
+    axios.post('https://nhat-desu-server.onrender.com/pay', {
       total: cart.total
     },)
     .then((response) => {

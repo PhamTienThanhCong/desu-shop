@@ -28,7 +28,7 @@ def chat():
 @app.route('/craw', methods=['GET'])
 def craw():
     # return response
-    name_craw = "http://localhost:8000/v1/chat"
+    name_craw = "https://nhat-desu-server.onrender.com/v1/chat"
     if craw_app.crawl_website(name_craw):
         return jsonify({'craw': 'success'})
     else:

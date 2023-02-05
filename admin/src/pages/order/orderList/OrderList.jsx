@@ -13,7 +13,7 @@ import Paper from '@mui/material/Paper';
 
 
 export default function OrderList() {
-  // get data user from http://localhost:8000/v1/user
+  // get data user from https://nhat-desu-server.onrender.com/v1/user
   document.title = "Order List";
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -25,7 +25,7 @@ export default function OrderList() {
 
   const getData = async () => {
     setLoading(true);
-    const res = await axios.get('http://localhost:8000/v1/order');
+    const res = await axios.get('https://nhat-desu-server.onrender.com/v1/order');
     setData(res.data);
     setLoading(false);
     setPage(1)

@@ -13,7 +13,7 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 
 const Order = () => {
-    // get data user from http://localhost:8000/v1/user
+    // get data user from https://nhat-desu-server.onrender.com/v1/user
   const user = useSelector((state) => state.auth.login.currentUser);
   document.title = "My order";
   const [data, setData] = useState([]);
@@ -24,7 +24,7 @@ const Order = () => {
 
   const getData = async () => {
     setLoading(true);
-    const res = await axios.get(`http://localhost:8000/v1/order/user/${user._id}`);
+    const res = await axios.get(`https://nhat-desu-server.onrender.com/v1/order/user/${user._id}`);
     setData(res.data);
     setLoading(false);
     setPage(1);

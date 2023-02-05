@@ -79,7 +79,7 @@ const ProductCategory = () => {
   const getProducts = async () => {
     try {
       setLoading(true);
-      const res = await axios.get('http://localhost:8000/v1/product');
+      const res = await axios.get('https://nhat-desu-server.onrender.com/v1/product');
       setProducts(res.data);
       setLoading(false);
     } catch (err) {}
@@ -88,7 +88,7 @@ const ProductCategory = () => {
   const getCategory = async () => {
     try {
       setLoading(true);
-      const resCat = await axios.get('http://localhost:8000/v1/category');
+      const resCat = await axios.get('https://nhat-desu-server.onrender.com/v1/category');
       setCategory(resCat.data);
       setLoading(false);
     } catch (err) {}

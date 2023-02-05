@@ -13,7 +13,7 @@ import Paper from '@mui/material/Paper';
 
 
 export default function ChatList() {
-  // get data user from http://localhost:8000/v1/user
+  // get data user from https://nhat-desu-server.onrender.com/v1/user
   document.title = "Tag chat List";
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -23,7 +23,7 @@ export default function ChatList() {
 
   const getData = async () => {
     setLoading(true);
-    const res = await axios.get('http://localhost:8000/v1/chat');
+    const res = await axios.get('https://nhat-desu-server.onrender.com/v1/chat');
     setData(res.data.intents);
     setLoading(false);
     setPage(1)

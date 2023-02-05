@@ -60,7 +60,7 @@ app.post('/pay', cors(),(req, res) => {
         },
         "redirect_urls": {
             "return_url": "http://localhost:3006/success",
-            "cancel_url": "http://localhost:8000/cancel"
+            "cancel_url": "https://nhat-desu-server.onrender.com/cancel"
         },
         "transactions": [{
             

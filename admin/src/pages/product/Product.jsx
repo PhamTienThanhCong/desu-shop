@@ -35,7 +35,7 @@ export default function Product() {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       };
-      const res = await userRequest.get(`http://localhost:8000/v1/product/${productId}`, config);
+      const res = await userRequest.get(`https://nhat-desu-server.onrender.com/v1/product/${productId}`, config);
       console.log(res);
       const data = {
         name: res.data.name ? res.data.name : "",

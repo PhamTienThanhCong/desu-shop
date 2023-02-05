@@ -23,7 +23,7 @@ const Order = () => {
 
   const getData = async () => {
     setLoading(true);
-    const res = await axios.get(`http://localhost:8000/v1/order/${id}`);
+    const res = await axios.get(`https://nhat-desu-server.onrender.com/v1/order/${id}`);
     setData(res.data.products);
     console.log(res.data.products);
     setLoading(false);
