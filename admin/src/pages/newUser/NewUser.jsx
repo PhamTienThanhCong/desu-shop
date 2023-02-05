@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function NewUser() {
   document.title = "New User";
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const username = e.target[0].value;
     const email = e.target[1].value;
@@ -26,9 +26,11 @@ export default function NewUser() {
       },
     };
     try {
-      const newUser = axios.post(`https://nhat-desu-server.onrender.com/v1/user`, user, config);
+      const res = await axios.post("https://nhat-desu-server.onrender.com/v1/auth/register", user);
       // move to user page
-      alert("New user created successfully");
+      if (res.data) {
+        window.location.replace(`/user/${res.data.id}`);
+      }
     }
     catch (error) {
       console.log(error);

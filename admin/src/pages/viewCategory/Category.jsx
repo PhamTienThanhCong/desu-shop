@@ -70,8 +70,8 @@ export default function ViewCategory() {
     };
     try {
       await axios.delete(`https://nhat-desu-server.onrender.com/v1/category/${id}`, config);
-      window.location.replace("/category");
       alert("category deleted successfully");
+      window.location.replace("/category");
     } catch (error) {
       console.log(error);
     }

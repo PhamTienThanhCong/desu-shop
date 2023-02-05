@@ -31,8 +31,12 @@ const Products = ({ cat, filters, sort, search }) => {
         } else {
           url = 'https://nhat-desu-server.onrender.com/v1/product';
         }
-        console.log(url);
-        const res = await axios.get(url);
+        const config = {
+          headers: {
+            "Content-Type": "application/json"
+          },
+        };
+        const res = await axios.get(url, config);
         setProducts(res.data);
         setLoading(false);
       } catch (err) {}

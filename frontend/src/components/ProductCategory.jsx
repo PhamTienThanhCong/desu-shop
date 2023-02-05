@@ -79,7 +79,14 @@ const ProductCategory = () => {
   const getProducts = async () => {
     try {
       setLoading(true);
-      const res = await axios.get('https://nhat-desu-server.onrender.com/v1/product');
+      // config header 
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      };
+      const res = await axios.get('https://nhat-desu-server.onrender.com/v1/product', config);
       setProducts(res.data);
       setLoading(false);
     } catch (err) {}

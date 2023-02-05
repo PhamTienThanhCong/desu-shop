@@ -10,6 +10,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import OutlinedInput from '@mui/material/OutlinedInput';
 
 
 export default function ChatList() {
@@ -20,6 +21,7 @@ export default function ChatList() {
   // paging data user
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(1);
+  const [tagName, setTagName] = useState("")
 
   const getData = async () => {
     setLoading(true);
@@ -34,6 +36,10 @@ export default function ChatList() {
     }
   }
 
+  const handleChangeTagName = (e) => {
+    setTagName(e.target.value);
+  }
+
   useEffect(() => {
     getData();
   }, []);
@@ -42,7 +48,8 @@ export default function ChatList() {
     <div className="userList">
       <div className="userListTitleContainer">
         <h1 className="userListTitle">Tag chat List</h1>
-        <Link to="/add-chat">
+        <OutlinedInput onChange={ handleChangeTagName } placeholder="Search for tag name" />
+        <Link to="/add-tag">
           <button className="userAddButton">Create</button>
         </Link>
       </div>
@@ -73,7 +80,15 @@ export default function ChatList() {
               </TableRow>
             ) : (
               // data
-              data.slice((page - 1) * 10, page * 10).map((item) => (
+              data.filter((item) => {
+                if (tagName === "") {
+                  return item
+                } else if (item.tag.toLowerCase().includes(tagName.toLowerCase()) || item.description.toLowerCase().includes(tagName.toLowerCase())) {
+                  return item
+                }
+              }).sort((a, b) => {
+                return new Date(b.updatedAt) - new Date(a.updatedAt);
+              }).slice((page - 1) * 10, page * 10).map((item) => (
                 <TableRow
                   key={item.id}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

@@ -5,13 +5,15 @@ import { useEffect, useMemo, useState } from "react";
 import { userRequest } from "../../requestMethods";
 import { updateProduct } from "../../redux/apiCalls";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
+import axios from 'axios';
 
 export default function Product() {
   const dispatch = useDispatch();
   const location = useLocation();
   const productId = location.pathname.split("/")[2];
   const [inputs, setInputs] = useState({});
+  const [categories, setCategories] = useState([]);
   const [product, setProduct] = useState({
     name: "",
     description: "",
@@ -21,7 +23,27 @@ export default function Product() {
     category: "",
     category_id: "",
   });
-  const categories = useSelector((state) => state.category.categories);
+
+  // get categories
+  const getCategories = async () => {
+    try {
+      // config header
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      };
+      const res = await axios.get("https://nhat-desu-server.onrender.com/v1/category", config);
+      setCategories(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, []);
   
   document.title = `${product.name}`;
 
@@ -36,7 +58,7 @@ export default function Product() {
         },
       };
       const res = await userRequest.get(`https://nhat-desu-server.onrender.com/v1/product/${productId}`, config);
-      console.log(res);
+
       const data = {
         name: res.data.name ? res.data.name : "",
         description: res.data.description ? res.data.description : "",
@@ -150,7 +172,7 @@ export default function Product() {
             <label>Category</label>
             <select name="category" onChange={handleChange} >
               {categories.map((category) => (
-                <option key={category.id} defaultValue={category.id} selected={category.id === product.category_id}>
+                <option key={category.id} value={category.id} selected={category.id === product.category_id}>
                   {category.name}
                 </option>
               ))}

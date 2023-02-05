@@ -25,7 +25,8 @@ const Order = () => {
   const getData = async () => {
     setLoading(true);
     const res = await axios.get(`https://nhat-desu-server.onrender.com/v1/order/user/${user._id}`);
-    setData(res.data);
+    // đảo ngược mảng để lấy dữ liệu mới nhất
+    setData(res.data.reverse());
     setLoading(false);
     setPage(1);
     if (res.data.length % 10 !== 0) {
