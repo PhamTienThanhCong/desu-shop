@@ -9,6 +9,10 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 # post chat 
+@app.route('/')
+def index():
+    return jsonify({'message': 'Hello World'})
+
 @app.route('/chat', methods=['POST'])
 @cross_origin()
 def chat():
