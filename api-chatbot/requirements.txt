@@ -6,3 +6,4 @@ numpy
 requests
 tensorflow
 tflearn
+waitress

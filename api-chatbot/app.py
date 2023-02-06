@@ -53,6 +53,3 @@ def train():
     else:
         return jsonify({'train': 'fail'})
 
-
-if __name__ == '__main__':
-    app.run()
