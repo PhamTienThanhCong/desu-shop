@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
-from process import chatbot, training
+# from process import training
+from process import chatbot
 from process import craw_app
 from flask_cors import cross_origin, CORS
 # sleep
@@ -49,11 +50,11 @@ def read():
         return jsonify({'read': 'fail'})
     
 # create a route train data from json file
-@app.route('/training', methods=['GET'])
-def train():
-    # return response
-    if training.training() != False:
-        return jsonify({'train': 'success'})
-    else:
-        return jsonify({'train': 'fail'})
+# @app.route('/training', methods=['GET'])
+# def train():
+#     # return response
+#     if training.training() != False:
+#         return jsonify({'train': 'success'})
+#     else:
+#         return jsonify({'train': 'fail'})
 
