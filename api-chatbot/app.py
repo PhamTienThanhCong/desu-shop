@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from process import training
 from process import craw_app
+from process import chatbot
 from flask_cors import cross_origin, CORS
 # sleep
 import time
@@ -21,7 +22,6 @@ def chat():
     # get message from request json
     message = request.json['message']
     # get response from chatbot
-    from process import chatbot
     response = chatbot.chatResponse(message)
     if response is None:
         response = "I don't understand"

@@ -5,6 +5,7 @@ import { mobile } from "../responsive";
 import { Close, FormatAlignJustify } from "@material-ui/icons";
 import AddIcon from '@mui/icons-material/Add';
 import React, { useState } from 'react';
+import { useEffect } from "react";
 import axios from 'axios';
 
 
@@ -181,6 +182,16 @@ const ChatWindown = () => {
         // console.log(e.target.value);
     }
 
+    // Cuộn trang web xuống cuối
+    const scrollToBottom = () => {
+        const chatBody = document.getElementsByClassName("chat-content");
+        chatBody[chatBody.length - 1].scrollIntoView({ behavior: 'smooth' })
+    }
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
+
     return (
       <Container>
         <Chat__header>
@@ -194,7 +205,7 @@ const ChatWindown = () => {
         <Chat__body style={{ display: isOpen ? "block" : "none" }}>
             <Message>
                 {messages.map((message, index) => 
-                    <ChatShow key={index} style={ 
+                    <ChatShow className="chat-content" key={index} style={ 
                         message.isMyMessage ? { justifyContent: "flex-end" } : { justifyContent: "flex-start" }
                      }>
                         {message.isMyMessage ? <MyChat>{message.message}</MyChat> : <Chat>{message.message}</Chat>}

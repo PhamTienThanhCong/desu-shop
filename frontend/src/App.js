@@ -20,7 +20,14 @@ import Navbar from './components/Navbar';
 import ChatWindown from './components/ChatWindown';
 import Order from './pages/Order';
 import ViewOrder from './pages/ViewOrder';
+import { useEffect } from 'react';
+
+
 function App() {
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <Container className="App" maxWidth="xl" >
