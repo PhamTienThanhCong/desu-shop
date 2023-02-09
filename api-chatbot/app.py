@@ -1,6 +1,5 @@
 from flask import Flask, jsonify, request
-# from process import training
-from process import chatbot
+from process import training
 from process import craw_app
 from flask_cors import cross_origin, CORS
 # sleep
@@ -22,6 +21,7 @@ def chat():
     # get message from request json
     message = request.json['message']
     # get response from chatbot
+    from process import chatbot
     response = chatbot.chatResponse(message)
     if response is None:
         response = "I don't understand"
@@ -50,13 +50,14 @@ def read():
         return jsonify({'read': 'fail'})
     
 # create a route train data from json file
-# @app.route('/training', methods=['GET'])
-# def train():
-#     # return response
-#     if training.training() != False:
-#         return jsonify({'train': 'success'})
-#     else:
-#         return jsonify({'train': 'fail'})
+@app.route('/training', methods=['GET'])
+def train():
+    # return response
+    if training.training() != False:
+        from process import chatbot
+        return jsonify({'train': 'success'})
+    else:
+        return jsonify({'train': 'fail'})
 
 if __name__ == '__main__':
-    app.run(debug=False, host='api-chat-desu-server.onrender.com')
+    app.run(debug=False)
