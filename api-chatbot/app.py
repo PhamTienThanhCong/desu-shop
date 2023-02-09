@@ -58,3 +58,5 @@ def read():
 #     else:
 #         return jsonify({'train': 'fail'})
 
+if __name__ == '__main__':
+    app.run(debug=False, host='api-chat-desu-server.onrender.com')
