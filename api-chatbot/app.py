@@ -17,8 +17,6 @@ def index():
 @app.route('/chat', methods=['POST'])
 @cross_origin()
 def chat():
-    # sleep 1s
-    # time.sleep(1)
     # get message from request json
     message = request.json['message']
     # get response from chatbot
@@ -28,6 +26,16 @@ def chat():
     response = jsonify({'chat': response})
     # return response
     return response
+
+# create a route train data from json file
+@app.route('/training', methods=['GET'])
+def train():
+    # return response
+    if training.training() != False:
+        from process import chatbot
+        return jsonify({'train': 'success'})
+    else:
+        return jsonify({'train': 'fail'})
 
 # create a route craw data and save to json file
 @app.route('/craw', methods=['GET'])
@@ -48,16 +56,8 @@ def read():
         return jsonify(data)
     else:
         return jsonify({'read': 'fail'})
-    
-# create a route train data from json file
-@app.route('/training', methods=['GET'])
-def train():
-    # return response
-    if training.training() != False:
-        from process import chatbot
-        return jsonify({'train': 'success'})
-    else:
-        return jsonify({'train': 'fail'})
+
+
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run()
