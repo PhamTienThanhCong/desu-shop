@@ -177,6 +177,14 @@ const Cart = () => {
       alert("Giỏ hàng trống");
       return;
     }
+    // config header
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
     axios.post(`https://nhat-desu-server.onrender.com/v1/order/${user._id}`, {
       "totalPrice": totalPrice + 5.9
     }, {
